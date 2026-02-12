@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
 
 interface NavigatorProps {
 	activePage: "home" | "shop" | "about-us";
@@ -13,6 +14,9 @@ const Navigator: React.FC<NavigatorProps> = ({ activePage }) => {
 	const toggleMobileMenu = () => {
 		setMobileMenuOpen(!mobileMenuOpen);
 	};
+
+	const { getTotalItems } = useCart();
+	const totalItems = getTotalItems();
 
 	return (
 		<header
@@ -51,7 +55,7 @@ const Navigator: React.FC<NavigatorProps> = ({ activePage }) => {
 				</Link>
 				<Link
 					href="/shop/cart"
-					className="text-textdark hover:text-primary p-1 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+					className="relative text-textdark hover:text-primary p-1 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
 					aria-label="Shopping cart"
 				>
 					<svg
@@ -68,7 +72,15 @@ const Navigator: React.FC<NavigatorProps> = ({ activePage }) => {
 							d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 7a2 2 0 01-2 2H8a2 2 0 01-2-2L5 9z"
 						/>
 					</svg>
+
+					{/* Badge */}
+					{totalItems > 0 && (
+						<span className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold rounded-full px-2 py-[2px] min-w-[18px] text-center">
+							{totalItems}
+						</span>
+					)}
 				</Link>
+
 				<Link
 					href="#"
 					className="text-textdark hover:text-primary p-1 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"

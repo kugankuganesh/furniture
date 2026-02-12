@@ -1,5 +1,7 @@
 {
-	"name": "furniture-project",
+	"homepage": "https://kugankuganesh.github.io/furniture",
+
+	"name": "furniture",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -12,7 +14,11 @@
 		"lint:detailed": "next lint --format stylish",
 		"sqa:test": "npm run lint:detailed && npm run lint:report",
 		"analyze": "ANALYZE=true npm run build",
-		"build:prod": "NODE_ENV=production next build && next export"
+		"build:prod": "NODE_ENV=production next build && next export",
+		 "predeploy": "next build && next export",
+        "deploy": "gh-pages -d out",
+
+        "export": "next build"
 	},
 	"dependencies": {
 		"next": "15.3.3",
