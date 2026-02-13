@@ -1,5 +1,4 @@
 {
-	"homepage": "https://kugankuganesh.github.io/furniture",
 
 	"name": "furniture",
 	"version": "0.1.0",
@@ -15,8 +14,7 @@
 		"sqa:test": "npm run lint:detailed && npm run lint:report",
 		"analyze": "ANALYZE=true npm run build",
 		"build:prod": "NODE_ENV=production next build && next export",
-		 "predeploy": "next build && next export",
-        "deploy": "gh-pages -d out",
+		
 
         "export": "next build"
 	},
